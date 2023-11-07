@@ -1,4 +1,6 @@
-public interface ITable
+public abstract class ITable
 {
-    void Load(string[] columns);
+    public virtual void Load(string[] columns) { }
+
+    public virtual void OnLoaded() { }
 }

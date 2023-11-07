@@ -12,7 +12,8 @@ public class ExcelToolSettings : ScriptableObject
     public string exportExcelDirectory = "Assets/Game/Tables";
     [Header("脚本生成的路径")]
     public string scriptGenerateDirectory = "Assets/Scripts/Tables";
-
+    [Header("脚本生成的路径")]
+    public string loadPathFormation = "Tables/{0}";
 
 
     private const string PATH = "Assets/Editor/Resources/ExcelToolSettings.asset";
@@ -52,6 +53,7 @@ public class ExcelToolSettings : ScriptableObject
                 EditorGUILayout.PropertyField(m_SerializedObject.FindProperty("readExcelDirectory"));
                 EditorGUILayout.PropertyField(m_SerializedObject.FindProperty("exportExcelDirectory"));
                 EditorGUILayout.PropertyField(m_SerializedObject.FindProperty("scriptGenerateDirectory"));
+                EditorGUILayout.PropertyField(m_SerializedObject.FindProperty("loadPathFormation"));
                 if (EditorGUI.EndChangeCheck())
                 {
                     m_SerializedObject.ApplyModifiedProperties();  // 应用修改了的属性值

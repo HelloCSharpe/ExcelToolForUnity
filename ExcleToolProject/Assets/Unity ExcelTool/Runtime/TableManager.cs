@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TableManager : MonoBehaviour
@@ -22,14 +24,26 @@ public class TableManager : MonoBehaviour
         }
     }
 
-    public void Init()
+    private Func<string, string> loadFunction = null;
+
+    public void Init(Func<string,string> LoadTableFunc)
     {
+        loadFunction = LoadTableFunc;
         Table.Init();
     }
 
-    public void LoadTable<T>(string tablePath) where T: ITable
+    public void LoadTable<T>(string tablePath) where T : ITable, new()
     {
-
+        string content = loadFunction.Invoke(tablePath);
+        if (content != null)
+        {
+            var lines = content.Split('\n');
+            for (int i = 0; i < lines.Length; i++)
+            {
+                var line = lines[i];
+                new T().Load(line.Split('\t'));
+            }
+        }
     }
 
 }
