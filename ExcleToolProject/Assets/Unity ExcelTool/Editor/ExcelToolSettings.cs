@@ -35,8 +35,6 @@ public class ExcelToolSettings : ScriptableObject
         }
     }
 
-
-    private static bool isTest = false;
     private static SerializedObject m_SerializedObject;
     [SettingsProvider]
     public static SettingsProvider MyExcelToolSettings()
